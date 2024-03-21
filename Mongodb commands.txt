@@ -1,0 +1,1383 @@
+school> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+school    8.00 KiB
+school> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+school    8.00 KiB
+school> db.dropDatabase()
+{ ok: 1, dropped: 'school' }
+school> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+school> show dbs
+School    8.00 KiB
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+school> use School
+switched to db School
+School> db.Students.insertOne({name: "Spongebob", age: 30, gpa: 4.0});
+{
+  acknowledged: true,
+  insertedId: ObjectId('65ddd0af58d855ccac8084e5')
+}
+School> db.Students.find()
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  }
+]
+School> db.Students.insertMany([{name:"Patrick",age:38, gpa:2.5},{name:"Sandy", age:27,gpa:4.0},{name:"Gary",age:18, gpa:2.5}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65ddd1ea58d855ccac8084e9'),
+    '1': ObjectId('65ddd1ea58d855ccac8084ea'),
+    '2': ObjectId('65ddd1ea58d855ccac8084eb')
+  }
+}
+
+School> db.Students.insertOne({name: "Larry", age: 32, gpa: 2.8,fullTime: false, registerDate: new Date(),graduationDate: null, courses: ["Biology", "Chemistry","Calculus"], addresss:{street: "123 fake street", city: "Narni", zip: 123456}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65ddd58a58d855ccac8084ec')
+}
+
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+
+//Sort name by alphabetical order
+
+School> db.Students.find().sort({name:1});
+[
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  }
+]
+
+//Sort name by Descending order
+School> db.Students.find().sort({name:-1});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9
+  }
+]
+
+School> db.Students.find().sort({gpa:1});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5
+  },
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  }
+]
+School> db.Students.find().sort({gpa:-1});
+[
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  },
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  }
+]
+School> db.Students.find().limit(1);
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  }
+]
+School> db.Students.find().limit(3);
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  }
+]
+School> db.Students.find().sort({gpa:-1}).limit(1);
+[
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3
+  }
+]
+School> db.Students.find().sort({gpa:1}).limit(1);
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5
+  }
+]
+
+
+School> db.Students.find({fullTime: false},{gpa:4.0});
+[ { _id: ObjectId('65ddd58a58d855ccac8084ec'), gpa: 2.8 } ]
+School> db.Students.find({},{name:true});
+[
+  { _id: ObjectId('65ddd0af58d855ccac8084e5'), name: 'Spongebob' },
+  { _id: ObjectId('65ddd1ea58d855ccac8084e9'), name: 'Patrick' },
+  { _id: ObjectId('65ddd1ea58d855ccac8084ea'), name: 'Sandy' },
+  { _id: ObjectId('65ddd1ea58d855ccac8084eb'), name: 'Gary' },
+  { _id: ObjectId('65ddd2e577571975b0fc82ed'), name: 'Alan' },
+  { _id: ObjectId('65ddd2e577571975b0fc82ee'), name: 'Kristen' },
+  { _id: ObjectId('65ddd2e577571975b0fc82ef'), name: 'Glenn' },
+  { _id: ObjectId('65ddd58a58d855ccac8084ec'), name: 'Larry' }
+]
+
+School> db.Students.find({gpa:4.0},{fullTime: true});
+[
+  { _id: ObjectId('65ddd0af58d855ccac8084e5') },
+  { _id: ObjectId('65ddd1ea58d855ccac8084ea') }
+]
+
+School> db.Students.find({},{_id:false},{name:true});
+[
+  { name: 'Spongebob', age: 30, gpa: 4 },
+  { name: 'Patrick', age: 38, gpa: 2.5 },
+  { name: 'Sandy', age: 27, gpa: 4 },
+  { name: 'Gary', age: 18, gpa: 2.5 },
+  { name: 'Alan', age: 35, gpa: 2.9 },
+  { name: 'Kristen', age: 27, gpa: 4.3 },
+  { name: 'Glenn', age: 18, gpa: 3.5 },
+  {
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+School> db.Students.find({},{_id:false, name:true});
+[
+  { name: 'Spongebob' },
+  { name: 'Patrick' },
+  { name: 'Sandy' },
+  { name: 'Gary' },
+  { name: 'Alan' },
+  { name: 'Kristen' },
+  { name: 'Glenn' },
+  { name: 'Larry' }
+]
+School> db.Students.find({},{_id:false, name:true, gpa:true});
+[
+  { name: 'Spongebob', gpa: 4 },
+  { name: 'Patrick', gpa: 2.5 },
+  { name: 'Sandy', gpa: 4 },
+  { name: 'Gary', gpa: 2.5 },
+  { name: 'Alan', gpa: 2.9 },
+  { name: 'Kristen', gpa: 4.3 },
+  { name: 'Glenn', gpa: 3.5 },
+  { name: 'Larry', gpa: 2.8 }
+]
+
+School> db.Students.find({},{_id:false, name:true, gpa:true});
+[
+  { name: 'Spongebob', gpa: 4 },
+  { name: 'Patrick', gpa: 2.5 },
+  { name: 'Sandy', gpa: 4 },
+  { name: 'Gary', gpa: 2.5 },
+  { name: 'Alan', gpa: 2.9 },
+  { name: 'Kristen', gpa: 4.3 },
+  { name: 'Glenn', gpa: 3.5 },
+  { name: 'Larry', gpa: 2.8 }
+]
+School> db.Students.update({name:"Spongebob"},{$set:{fullTime:true}});
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+School> db.Students.updateOne({name:"Spongebob"},{$set:{fullTime:true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+School> db.Students.find({name:"Spongebob"});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: true
+  }
+]
+School> db.Students.updateOne({_id:ObjectId('65ddd0af58d855ccac8084e5')}, {$set:{fullTime:false}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+School> db.Students.find({name:"Spongebob"});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  }
+]
+School> db.Students.find({_id:ObjectId('65ddd0af58d855ccac8084e5')});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  }
+]
+School> db.Students.updateOne({_id:ObjectId('65ddd0af58d855ccac8084e5')}, {$unset:{fullTime:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+School> db.Students.find({_id:ObjectId('65ddd0af58d855ccac8084e5')});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4
+  }
+]
+
+School> db.Students.updateMany({}, {$set:{fullTime:false}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 8,
+  modifiedCount: 7,
+  upsertedCount: 0
+}
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+
+School> db.Students.updateOne({name:"Gary"}, {$unset:{fullTime:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+School> db.Students.updateOne({name:"Sandy"}, {$unset:{fullTime:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+School> db.Students.updateMany({fullTime:{$exists:false}}, {$set:{fullTime:true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+
+School> db.Students.deleteOne({name:"Larry"});
+{ acknowledged: true, deletedCount: 1 }
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.deleteMany({fullTime:false});
+{ acknowledged: true, deletedCount: 4 }
+School> db.Students.find();
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  }
+]
+School> db.Students.deleteMany({registerDate:{$exists:false}});
+{ acknowledged: true, deletedCount: 2 }
+School> db.Students.find();
+
+
+
+//$ne - Not Equals operator
+School> db.Students.find({name:{$ne:"Spongebob"}});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+
+School> db.Students.find({age:{$lt:20}});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.find({age:{$gt:27}});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+School> db.Students.find({age:{$gte:27}});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+School> db.Students.find({age:{$lte:27}});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.find({gpa:{$gte:3,$lte:4}});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.find({name:{$in:["Spongebob","Patrick", "Sandy"]}});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  }
+]
+School> db.Students.find({name:{$nin:["Spongebob","Patrick", "Sandy"]}});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+
+School> db.Students.find({$and:[{fullTime:true},{age: {$lte:27}}]});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  }
+]
+School> db.Students.find({$or:[{fullTime:true},{age: {$lte:22}}]});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.find({$or:[{fullTime:true},{age: {$lte:27}}]});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: 18,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+School> db.Students.find({$nor:[{fullTime:true},{age: {$lte:27}}]});
+[
+  {
+    _id: ObjectId('65ddd0af58d855ccac8084e5'),
+    name: 'Spongebob',
+    age: 30,
+    gpa: 4,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084e9'),
+    name: 'Patrick',
+    age: 38,
+    gpa: 2.5,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ed'),
+    name: 'Alan',
+    age: 35,
+    gpa: 2.9,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd58a58d855ccac8084ec'),
+    name: 'Larry',
+    age: 32,
+    gpa: 2.8,
+    fullTime: false,
+    registerDate: ISODate('2024-02-27T12:28:58.077Z'),
+    graduationDate: null,
+    courses: [ 'Biology', 'Chemistry', 'Calculus' ],
+    addresss: { street: '123 fake street', city: 'Narni', zip: 123456 }
+  }
+]
+School> db.Students.find({age: {$lt:27}});
+[
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+
+School> db.Students.find({age:{$not:{$gte:30}}});
+[
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084ea'),
+    name: 'Sandy',
+    age: 27,
+    gpa: 4,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd1ea58d855ccac8084eb'),
+    name: 'Gary',
+    age: null,
+    gpa: 2.5,
+    fullTime: true
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ee'),
+    name: 'Kristen',
+    age: 27,
+    gpa: 4.3,
+    fullTime: false
+  },
+  {
+    _id: ObjectId('65ddd2e577571975b0fc82ef'),
+    name: 'Glenn',
+    age: 18,
+    gpa: 3.5,
+    fullTime: false
+  }
+]
+
+School> db.Students.find({name:"Larry"}).explain("executionStats");
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'School.Students',
+    indexFilterSet: false,
+    parsedQuery: { name: { '$eq': 'Larry' } },
+    queryHash: 'A2F868FD',
+    planCacheKey: 'A2F868FD',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'COLLSCAN',
+      filter: { name: { '$eq': 'Larry' } },
+      direction: 'forward'
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 0,
+    totalKeysExamined: 0,
+    totalDocsExamined: 8,
+    executionStages: {
+      stage: 'COLLSCAN',
+      filter: { name: { '$eq': 'Larry' } },
+      nReturned: 1,
+      executionTimeMillisEstimate: 0,
+      works: 9,
+      advanced: 1,
+      needTime: 7,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      direction: 'forward',
+      docsExamined: 8
+    }
+  },
+  command: { find: 'Students', filter: { name: 'Larry' }, '$db': 'School' },
+  serverInfo: {
+    host: 'LAPTOP-O93SABU5',
+    port: 27017,
+    version: '7.0.5',
+    gitVersion: '7809d71e84e314b497f282ea8aa06d7ded3eb205'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+School> db.Students.createIndex({name:1});
+name_1
+School> db.Students.getIndexes;
+[Function: getIndexes] AsyncFunction {
+  apiVersions: [ 1, Infinity ],
+  serverVersions: [ '3.2.0', '999.999.999' ],
+  returnsPromise: true,
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnType: { type: 'unknown', attributes: {} },
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+School> db.Students.getIndexes();
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' }
+]
+School> db.Students.showIndex()
+TypeError: db.Students.showIndex is not a function
+School> db.Students.dropIndex("name_1");
+{ nIndexesWas: 2, ok: 1 }
+School> db.Students.getIndexes();
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+
+School> show collections
+Students
+School> db.createCollection("teachers", {capped:true, size:100000000, max: 100},{autIndexId: false});
+{ ok: 1 }
+School> show collections
+Students
+teachers
+School> use teachers
+switched to db teachers
+teachers> use Students
+switched to db Students
+Students> db.createCollection("courses");
+{ ok: 1 }
+Students> show collections
+courses
+Students> use School
+switched to db School
+School> use Students
+switched to db Students
+Students> db.courses.drop();
+true
+Students> show collections;
+
+Students> use School
+switched to db School
+School> show collections
+Students
+teachers
+School> db.createCollection("courses");
+{ ok: 1 }
+School> show collections
+courses
+Students
+teachers

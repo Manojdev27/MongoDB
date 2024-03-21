@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "65df47d1815fd7924731add2"
+  },
+  "name": "Manoj Kumar",
+  "details": {
+    "position": "Software Developer",
+    "salary": 90000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731addc"
+  },
+  "name": "Harry Potter",
+  "details": {
+    "position": "Software Developer",
+    "salary": 90000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731addd"
+  },
+  "name": "Hermoine Granger",
+  "details": {
+    "position": "Software Architect",
+    "salary": 90000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731adde"
+  },
+  "name": "Ronald Weasley",
+  "details": {
+    "position": "Software Developer",
+    "salary": 90000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731addf"
+  },
+  "name": "Nevile Longbottom",
+  "details": {
+    "position": "Software Developer",
+    "salary": 70000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731ade0"
+  },
+  "name": "Albus Dumbledore",
+  "details": {
+    "position": "Software Developer",
+    "salary": 80000
+  }
+},
+{
+  "_id": {
+    "$oid": "65df4a9f815fd7924731ade1"
+  },
+  "name": "Ginny Weasley",
+  "details": {
+    "position": "Software Architect",
+    "salary": 80000
+  }
+}]

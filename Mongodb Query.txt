@@ -1,0 +1,167 @@
+test> show dbs
+MongooseTut  144.00 KiB
+School        76.00 KiB
+admin         40.00 KiB
+config        60.00 KiB
+local         40.00 KiB
+office         1.18 MiB
+test> use office
+switched to db office
+office> show documents
+office> db.Employees.find({}, {firstName: 1})
+
+office> db.employees.find({}, {firstName: 1})
+[
+  { _id: ObjectId('5df2dee65f5bf8af92eaf472'), firstName: 'Diane' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf473'), firstName: 'Jeff' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf474'), firstName: 'William' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf475'), firstName: 'Mary' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf476'), firstName: 'Gerard' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf477'), firstName: 'Leslie' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf478'), firstName: 'Leslie' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf479'), firstName: 'Julie' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47a'), firstName: 'Steve' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47b'), firstName: 'Foon Yue' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47c'), firstName: 'George' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47d'), firstName: 'Loui' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47e'), firstName: 'Anthony' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf47f'), firstName: 'Gerard' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf480'), firstName: 'Pamela' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf481'), firstName: 'Larry' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf482'), firstName: 'Barry' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf483'), firstName: 'Peter' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf484'), firstName: 'Tom' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf485'), firstName: 'Mami' }
+]
+Type "it" for more
+office> it
+[
+  { _id: ObjectId('5df2dee65f5bf8af92eaf486'), firstName: 'Andy' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf487'), firstName: 'Martin' },
+  { _id: ObjectId('5df2dee65f5bf8af92eaf488'), firstName: 'Yoshimi' }
+]
+office> it
+no cursor
+office> db.employees.find({}, {_id: 0, firstName: 1})
+[
+  { firstName: 'Diane' },
+  { firstName: 'Jeff' },
+  { firstName: 'William' },
+  { firstName: 'Mary' },
+  { firstName: 'Gerard' },
+  { firstName: 'Leslie' },
+  { firstName: 'Leslie' },
+  { firstName: 'Julie' },
+  { firstName: 'Steve' },
+  { firstName: 'Foon Yue' },
+  { firstName: 'George' },
+  { firstName: 'Loui' },
+  { firstName: 'Anthony' },
+  { firstName: 'Gerard' },
+  { firstName: 'Pamela' },
+  { firstName: 'Larry' },
+  { firstName: 'Barry' },
+  { firstName: 'Peter' },
+  { firstName: 'Tom' },
+  { firstName: 'Mami' }
+]
+Type "it" for more
+office> db.employees.find({}, {_id: 0, firstName: 1, is_employee:"true"})
+[
+  { firstName: 'Diane', is_employee: 'true' },
+  { firstName: 'Jeff', is_employee: 'true' },
+  { firstName: 'William', is_employee: 'true' },
+  { firstName: 'Mary', is_employee: 'true' },
+  { firstName: 'Gerard', is_employee: 'true' },
+  { firstName: 'Leslie', is_employee: 'true' },
+  { firstName: 'Leslie', is_employee: 'true' },
+  { firstName: 'Julie', is_employee: 'true' },
+  { firstName: 'Steve', is_employee: 'true' },
+  { firstName: 'Foon Yue', is_employee: 'true' },
+  { firstName: 'George', is_employee: 'true' },
+  { firstName: 'Loui', is_employee: 'true' },
+  { firstName: 'Anthony', is_employee: 'true' },
+  { firstName: 'Gerard', is_employee: 'true' },
+  { firstName: 'Pamela', is_employee: 'true' },
+  { firstName: 'Larry', is_employee: 'true' },
+  { firstName: 'Barry', is_employee: 'true' },
+  { firstName: 'Peter', is_employee: 'true' },
+  { firstName: 'Tom', is_employee: 'true' },
+  { firstName: 'Mami', is_employee: 'true' }
+]
+Type "it" for more
+office> db.Employees.find().limit(3);
+
+office> db.employees.find().limit(3);
+[
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf472'),
+    employeeNumber: 1002,
+    lastName: 'Murphy',
+    firstName: 'Diane',
+    extension: 'x5800',
+    email: 'dmurphy@classicmodelcars.com',
+    officeCode: 1,
+    reportsTo: null,
+    jobTitle: 'President'
+  },
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf473'),
+    employeeNumber: 1076,
+    lastName: 'Firrelli',
+    firstName: 'Jeff',
+    extension: 'x9273',
+    email: 'jfirrelli@classicmodelcars.com',
+    officeCode: 1,
+    reportsTo: 1002,
+    jobTitle: 'VP Marketing'
+  },
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf474'),
+    employeeNumber: 1088,
+    lastName: 'Patterson',
+    firstName: 'William',
+    extension: 'x4871',
+    email: 'wpatterson@classicmodelcars.com',
+    officeCode: 6,
+    reportsTo: 1056,
+    jobTitle: 'Sales Manager (APAC)'
+  }
+]
+office> db.employees.find().limit(3).skip(4);
+[
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf476'),
+    employeeNumber: 1102,
+    lastName: 'Bondur',
+    firstName: 'Gerard',
+    extension: 'x5408',
+    email: 'gbondur@classicmodelcars.com',
+    officeCode: 4,
+    reportsTo: 1056,
+    jobTitle: 'Sale Manager (EMEA)'
+  },
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf477'),
+    employeeNumber: 1165,
+    lastName: 'Jennings',
+    firstName: 'Leslie',
+    extension: 'x3291',
+    email: 'ljennings@classicmodelcars.com',
+    officeCode: 1,
+    reportsTo: 1143,
+    jobTitle: 'Sales Rep'
+  },
+  {
+    _id: ObjectId('5df2dee65f5bf8af92eaf478'),
+    employeeNumber: 1166,
+    lastName: 'Thompson',
+    firstName: 'Leslie',
+    extension: 'x4065',
+    email: 'lthompson@classicmodelcars.com',
+    officeCode: 1,
+    reportsTo: 1143,
+    jobTitle: 'Sales Rep'
+  }
+]
+office>

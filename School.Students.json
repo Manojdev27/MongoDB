@@ -1,0 +1,86 @@
+[{
+  "_id": {
+    "$oid": "65ddd0af58d855ccac8084e5"
+  },
+  "name": "Spongebob",
+  "age": 30,
+  "gpa": 4,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "65ddd1ea58d855ccac8084e9"
+  },
+  "name": "Patrick",
+  "age": 38,
+  "gpa": 2.5,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "65ddd1ea58d855ccac8084ea"
+  },
+  "name": "Sandy",
+  "age": 27,
+  "gpa": 4,
+  "fullTime": true
+},
+{
+  "_id": {
+    "$oid": "65ddd1ea58d855ccac8084eb"
+  },
+  "name": "Gary",
+  "age": 18,
+  "gpa": 2.5,
+  "fullTime": true
+},
+{
+  "_id": {
+    "$oid": "65ddd2e577571975b0fc82ed"
+  },
+  "name": "Alan",
+  "age": 35,
+  "gpa": 2.9,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "65ddd2e577571975b0fc82ee"
+  },
+  "name": "Kristen",
+  "age": 27,
+  "gpa": 4.3,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "65ddd2e577571975b0fc82ef"
+  },
+  "name": "Glenn",
+  "age": 18,
+  "gpa": 3.5,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "65ddd58a58d855ccac8084ec"
+  },
+  "name": "Larry",
+  "age": 32,
+  "gpa": 2.8,
+  "fullTime": false,
+  "registerDate": {
+    "$date": "2024-02-27T12:28:58.077Z"
+  },
+  "graduationDate": null,
+  "courses": [
+    "Biology",
+    "Chemistry",
+    "Calculus"
+  ],
+  "addresss": {
+    "street": "123 fake street",
+    "city": "Narni",
+    "zip": 123456
+  }
+}]

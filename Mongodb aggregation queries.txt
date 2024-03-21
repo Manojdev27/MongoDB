@@ -1,0 +1,326 @@
+test> use shop
+switched to db shop
+shop> db.customers.insertMany([
+... {name:"Harry Potter"},
+... {name:"Peter Pevensie"},
+... {name:"Hermoine Granger"},
+... {name:"Ronald Weasley"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a0c44ecc2ccda3f74efa'),
+    '1': ObjectId('65e1a0c44ecc2ccda3f74efb'),
+    '2': ObjectId('65e1a0c44ecc2ccda3f74efc'),
+    '3': ObjectId('65e1a0c44ecc2ccda3f74efd')
+  }
+}
+
+shop> db.customers.phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efa")}, {phone:"365677899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efc")},{phone:"8998989899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efd")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a22d4ecc2ccda3f74efe'),
+    '1': ObjectId('65e1a22d4ecc2ccda3f74eff'),
+    '2': ObjectId('65e1a22d4ecc2ccda3f74f00')
+  }
+}
+shop> db.customers_phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efa")}, {phone:"365677899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efc")},{phone:"8998989899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efd")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a2834ecc2ccda3f74f01'),
+    '1': ObjectId('65e1a2834ecc2ccda3f74f02'),
+    '2': ObjectId('65e1a2834ecc2ccda3f74f03')
+  }
+}
+shop> db.customers_phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efa")}, {phone:"365677899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efc")},{phone:"8998989899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efd")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a2d94ecc2ccda3f74f04'),
+    '1': ObjectId('65e1a2d94ecc2ccda3f74f05'),
+    '2': ObjectId('65e1a2d94ecc2ccda3f74f06')
+  }
+}
+shop> db.customers.find()
+[
+  { _id: ObjectId('65e1a0c44ecc2ccda3f74efa'), name: 'Harry Potter' },
+  { _id: ObjectId('65e1a0c44ecc2ccda3f74efb'), name: 'Peter Pevensie' },
+  {
+    _id: ObjectId('65e1a0c44ecc2ccda3f74efc'),
+    name: 'Hermoine Granger'
+  },
+  { _id: ObjectId('65e1a0c44ecc2ccda3f74efd'), name: 'Ronald Weasley' }
+]
+shop> db.customers_phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efa")}, {phone:"365677899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efb")},{phone:"8998989899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efc")},{phone:"8998989899", customer_id:ObjectId("65e1a0c44ecc2ccda3f74efd")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a3ae4ecc2ccda3f74f07'),
+    '1': ObjectId('65e1a3ae4ecc2ccda3f74f08'),
+    '2': ObjectId('65e1a3ae4ecc2ccda3f74f09'),
+    '3': ObjectId('65e1a3ae4ecc2ccda3f74f0a')
+  }
+}
+shop> db.customers.insertMany([ { name: "Harry Potter" }, { name: "Peter Pevensie" }, { name: "Hermoine Granger" }, { name: "Ronald Weasley" }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    '1': ObjectId('65e1a4114ecc2ccda3f74f0c'),
+    '2': ObjectId('65e1a4114ecc2ccda3f74f0d'),
+    '3': ObjectId('65e1a4114ecc2ccda3f74f0e')
+  }
+}
+shop> db.customers_phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0b")}, {phone:"365677899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0c")},{phone:"8998989899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0d")},{phone:"8998989899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0e")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a4634ecc2ccda3f74f0f'),
+    '1': ObjectId('65e1a4634ecc2ccda3f74f10'),
+    '2': ObjectId('65e1a4634ecc2ccda3f74f11'),
+    '3': ObjectId('65e1a4634ecc2ccda3f74f12')
+  }
+}
+shop> db.customers.phone.insertMany([ {phone:"9908090780", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0b")}, {phone:"365677899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0c")},{phone:"8998989899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0d")},{phone:"8998989899", customer_id:ObjectId("65e1a4114ecc2ccda3f74f0e")}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a49d4ecc2ccda3f74f13'),
+    '1': ObjectId('65e1a49d4ecc2ccda3f74f14'),
+    '2': ObjectId('65e1a49d4ecc2ccda3f74f15'),
+    '3': ObjectId('65e1a49d4ecc2ccda3f74f16')
+  }
+}
+
+shop> db.customers.aggregate([{ $lookup:{from: "customers.phone", localField: "_id", foreignField:"customer_id", as:"phone"}}])
+[
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    name: 'Harry Potter',
+    phone: [
+      {
+        _id: ObjectId('65e1a49d4ecc2ccda3f74f13'),
+        phone: '9908090780',
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0c'),
+    name: 'Peter Pevensie',
+    phone: [
+      {
+        _id: ObjectId('65e1a49d4ecc2ccda3f74f14'),
+        phone: '365677899',
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0c')
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0d'),
+    name: 'Hermoine Granger',
+    phone: [
+      {
+        _id: ObjectId('65e1a49d4ecc2ccda3f74f15'),
+        phone: '8998989899',
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0d')
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0e'),
+    name: 'Ronald Weasley',
+    phone: [
+      {
+        _id: ObjectId('65e1a49d4ecc2ccda3f74f16'),
+        phone: '8998989899',
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0e')
+      }
+    ]
+  }
+]
+shop> db.orders.insertMany([
+... {amount:100, customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')},
+... {amount:25, customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')},
+... {amount:85, customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1a9cc4ecc2ccda3f74f17'),
+    '1': ObjectId('65e1a9cc4ecc2ccda3f74f18'),
+    '2': ObjectId('65e1a9cc4ecc2ccda3f74f19')
+  }
+}
+shop> db.customers.aggregate([{ $lookup:{from: "orders", localField: "_id", foreignField:"customer_id", as:"orders"}}])
+[
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    name: 'Harry Potter',
+    orders: [
+      {
+        _id: ObjectId('65e1a9cc4ecc2ccda3f74f17'),
+        amount: 100,
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')
+      },
+      {
+        _id: ObjectId('65e1a9cc4ecc2ccda3f74f18'),
+        amount: 25,
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')
+      },
+      {
+        _id: ObjectId('65e1a9cc4ecc2ccda3f74f19'),
+        amount: 85,
+        customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b')
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0c'),
+    name: 'Peter Pevensie',
+    orders: []
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0d'),
+    name: 'Hermoine Granger',
+    orders: []
+  },
+  {
+    _id: ObjectId('65e1a4114ecc2ccda3f74f0e'),
+    name: 'Ronald Weasley',
+    orders: []
+  }
+]
+shop> db.orders.aggregate([{ $lookup:{from: "customers", localField: "customer_id", foreignField:"_id", as:"customers"}}])
+[
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f17'),
+    amount: 100,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f18'),
+    amount: 25,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f19'),
+    amount: 85,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  }
+]
+shop> db.orders.aggregate([{ $lookup:{from: "customers", localField: "_id", foreignField:"_id", as:"customers"}}])
+[
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f17'),
+    amount: 100,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: []
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f18'),
+    amount: 25,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: []
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f19'),
+    amount: 85,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: []
+  }
+]
+shop> db.orders.aggregate([{ $lookup:{from: "customers", localField: "customer_id", foreignField:"_id", as:"customers"}}])
+[
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f17'),
+    amount: 100,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f18'),
+    amount: 25,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('65e1a9cc4ecc2ccda3f74f19'),
+    amount: 85,
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+    customers: [
+      {
+        _id: ObjectId('65e1a4114ecc2ccda3f74f0b'),
+        name: 'Harry Potter'
+      }
+    ]
+  }
+]
+shop> db.products.insertMany([
+... {name:"Mobile"},
+... {name:"Lamp"},
+... {name:"Pencils"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e1ab994ecc2ccda3f74f1a'),
+    '1': ObjectId('65e1ab994ecc2ccda3f74f1b'),
+    '2': ObjectId('65e1ab994ecc2ccda3f74f1c')
+  }
+}
+shop> db.orders.deleteMany({});
+{ acknowledged: true, deletedCount: 3 }
+shop> db.orders.insertOne({amount:"100", customer_id:ObjectId('65e1a4114ecc2ccda3f74f0c'),product_ids:[
+... ObjectId('65e1ab994ecc2ccda3f74f1a'),ObjectId('65e1ab994ecc2ccda3f74f1b'),ObjectId('65e1ab994ecc2ccda3f74f1c')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65e1ac9c4ecc2ccda3f74f1d')
+}
+
+shop> db.orders.aggregate([ {$lookup:{from:"products", localField:"product_ids", foreignField:"_id", as:"products"}}])
+[
+  {
+    _id: ObjectId('65e1ac9c4ecc2ccda3f74f1d'),
+    amount: '100',
+    customer_id: ObjectId('65e1a4114ecc2ccda3f74f0c'),
+    product_ids: [
+      ObjectId('65e1ab994ecc2ccda3f74f1a'),
+      ObjectId('65e1ab994ecc2ccda3f74f1b'),
+      ObjectId('65e1ab994ecc2ccda3f74f1c')
+    ],
+    products: [
+      { _id: ObjectId('65e1ab994ecc2ccda3f74f1a'), name: 'Mobile' },
+      { _id: ObjectId('65e1ab994ecc2ccda3f74f1b'), name: 'Lamp' },
+      { _id: ObjectId('65e1ab994ecc2ccda3f74f1c'), name: 'Pencils' }
+    ]
+  }
+]
+shop>
